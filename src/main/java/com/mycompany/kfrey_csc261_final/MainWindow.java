@@ -17,8 +17,6 @@ import java.util.Scanner;
  */
 public class MainWindow {
     //chat gpt api --> following learn ai/ml channel tutorial on youtube
-    private static final String API_KEY = "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";
-    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
     
     public MainWindow(){
         

@@ -6,16 +6,6 @@ import java.util.ArrayList;
 
 public abstract class TextAnalyzer {
     
-    protected String[] langCodes = {"eng", "spa", "fre","deu"}; // eng| english; spa | spanish; fre| french; deu| german 
-    protected String engTxt1 = "the-great-gatsby-1925.txt";
-    protected String engTxt2 = "times-year-in-review-2019.txt";
-    protected String spaTxt1 = "garcía-gual-historia-mínima-de-la-mitología-2014.txt";
-    protected String spaTxt2 = "biblioteca-de-artica-2017.txt";
-    protected String freTxt1 = "20-minutes-magazine-2013.txt";
-    protected String freTxt2 = "dans-les-coulisses-des-jeux-vidéo-harry-potter-2019.txt";
-    protected String deuTxt1 = "die-verwandlung-franz-kafka-1917.txt";
-    protected String deuTxt2 = "fenaco-stadt-land-monitor-2021-2023.txt";
-    
          
     public TextAnalyzer(){
         

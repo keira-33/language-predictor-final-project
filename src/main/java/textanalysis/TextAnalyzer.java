@@ -10,6 +10,8 @@ public abstract class TextAnalyzer {
         
     }
     
+    public abstract String analyzeText();
+    
     public static String readFileIntoString(String fileName, String langCode){
         //partially followed geeksforgeeks filereader class page and file reader code from my csc260 project
         //issues with this 1. use a buff reader too? 2. string concatentation in while loop is making a new string every time (bad memory wise)

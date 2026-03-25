@@ -2,6 +2,7 @@
 package textanalysis;
 
 public class LanguageRecordsContainer {
+    //** TO DO: make this singleton
     private String[] langCodes = {"eng", "spa", "fre","deu"}; // eng| english; spa | spanish; fre| french; deu| german 
     private String engTxt1 = "the-great-gatsby-1925.txt";
     private String engTxt2 = "times-year-in-review-2019.txt";

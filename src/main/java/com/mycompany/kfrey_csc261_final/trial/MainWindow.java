@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.kfrey_csc261_final;
+package com.mycompany.kfrey_csc261_final.trial;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Scanner;
 
 /**
@@ -17,6 +20,8 @@ import java.util.Scanner;
  */
 public class MainWindow {
     //chat gpt api --> following learn ai/ml channel tutorial on youtube
+    //private static final String API_KEY;
+    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
     
     public MainWindow(){
         
@@ -26,7 +31,7 @@ public class MainWindow {
         try{
             String prompt = "What is the capital of France?";
             String payload = "{\n" +
-                    "  \"model\": \"gpt-3.5-turbo\",\n" +
+                    "  \"model\": \"gpt-4.0-mini\",\n" +
                     "  \"messages\": [\n" +
                     "    {\"role\": \"user\", \"content\": \"" + prompt + "\"}\n" +
                     "  ]\n" +
@@ -77,6 +82,17 @@ public class MainWindow {
             e.printStackTrace();
             return "";
         }
+    }
+    
+    public static void reverseString(String[] args) throws Exception {
+        URL oracle = new URL("http://api.icndb.com/jokes/random?limitTo=nerdy");
+        URLConnection yc = oracle.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                                    yc.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) 
+            System.out.println(inputLine);
+        in.close();
     }
     
     

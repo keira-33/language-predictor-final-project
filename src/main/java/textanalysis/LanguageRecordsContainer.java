@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package textanalysis;
 
-/**
- *
- * @author kfrey
- */
 public class LanguageRecordsContainer {
     private String[] langCodes = {"eng", "spa", "fre","deu"}; // eng| english; spa | spanish; fre| french; deu| german 
     private String engTxt1 = "the-great-gatsby-1925.txt";
@@ -24,18 +17,24 @@ public class LanguageRecordsContainer {
     private LanguageRecord freRecord;
     private LanguageRecord deuRecord;
     
-    private LanguageRecord[] recordsContainer;
+    private static LanguageRecord[] recordsContainer;
     
     public LanguageRecordsContainer(){
-        engRecord = new LanguageRecord();
-        spaRecord = new LanguageRecord();
-        freRecord = new LanguageRecord();
-        deuRecord = new LanguageRecord();
+        engRecord = new LanguageRecord("eng");
+        spaRecord = new LanguageRecord("spa");
+        freRecord = new LanguageRecord("fre");
+        deuRecord = new LanguageRecord("deu");
         recordsContainer = new LanguageRecord[] {engRecord, spaRecord, freRecord, deuRecord};
     }
     
     public static void initializeFiles(){
         //load each of the files in and add their string information with initial text processing to their record/object in the list 
-        
+        String tempStr = "";
+        for(int i = 0; i < recordsContainer.length; i++){
+            tempStr += TextAnalyzer.readFileIntoString(recordsContainer[i].getLangCode()+"Txt1", recordsContainer[i].getLangCode());
+            tempStr += TextAnalyzer.readFileIntoString(recordsContainer[i].getLangCode()+"Txt2", recordsContainer[i].getLangCode());
+            
+            recordsContainer[i].setTextCollection(TextAnalyzer.processText(tempStr));
+        }
     }
 }

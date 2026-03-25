@@ -2,17 +2,12 @@
 package textanalysis;
 
 import java.io.FileReader;
-import java.util.ArrayList;
 
 public abstract class TextAnalyzer {
     
          
     public TextAnalyzer(){
         
-    }
-    
-    public static void initializeFiles(){
-        //load each of the files in but then I have to like add this stuff to a hashmap or collection of objects 
     }
     
     public static String readFileIntoString(String fileName, String langCode){
@@ -32,7 +27,15 @@ public abstract class TextAnalyzer {
             return "";
         }
     }
-    public String processText(){
+    public static String processText(String text){
         //this will prepare text for analysis --> lowercase, remove punctuation 
+        //NEEDS TO BE UPDATED 
+        //remove punctuation code from: https://www.geeksforgeeks.org/dsa/removing-punctuations-given-string/
+        text = text.replaceAll("\\p{Punct}","");
+        //end of borrowed code
+        //set a locale for lowercase function? --> https://www.geeksforgeeks.org/java/java-string-tolowercase-with-examples/
+        text = text.toLowerCase();
+        
+        return text;
     }
 }

@@ -1,5 +1,5 @@
 
-package com.mycompany.kfrey_csc261_final.MVC;
+package mvc;
 
 public class Model {
     //Model needs observer list 

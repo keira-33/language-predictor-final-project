@@ -49,7 +49,7 @@ public class MainWindow {
         connection.setDoOutput(true);
         connection.setRequestMethod("POST");
         
-        connection.setRequestProperty("Authorization", "Bearer "+API_KEY);
+        //connection.setRequestProperty("Authorization", "Bearer "+API_KEY);
         connection.setRequestProperty("Content-Type","application/json");
         
         try(OutputStream os = connection.getOutputStream()){

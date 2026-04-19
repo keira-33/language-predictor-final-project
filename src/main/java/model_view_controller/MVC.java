@@ -1,5 +1,5 @@
 
-package mvc;
+package model_view_controller;
 
 
 public class MVC {

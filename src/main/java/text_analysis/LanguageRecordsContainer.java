@@ -1,5 +1,7 @@
 
-package textanalysis;
+package text_analysis;
+
+import text_analysis.language_records.EnglishLangRecord;
 
 public class LanguageRecordsContainer {
     //SINGLETON CLASS
@@ -18,24 +20,24 @@ public class LanguageRecordsContainer {
 //    private String deuTxt1 = "die-verwandlung-franz-kafka-1917.txt";
 //    private String deuTxt2 = "fenaco-stadt-land-monitor-2021-2023.txt";
     
-    private LanguageRecord engRecord;
-    private LanguageRecord spaRecord;
-    private LanguageRecord freRecord;
-    private LanguageRecord deuRecord;
+    private EnglishLangRecord engRecord;
+    private EnglishLangRecord spaRecord;
+    private EnglishLangRecord freRecord;
+    private EnglishLangRecord deuRecord;
     
     private char[] letterDataset = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','á','é','í','ó','ú','ñ','ü','à','è','ù','ç','â','ê','î','ô','û','ë','ï','ä','ö','ß'};
     
-    private static LanguageRecord[] recordsContainer;
+    private static EnglishLangRecord[] recordsContainer;
     
     private static LanguageRecordsContainer single_instance = null;
     
     private LanguageRecordsContainer(){
         //maintain order of creation
-        engRecord = new LanguageRecord("eng");
-        spaRecord = new LanguageRecord("spa");
-        freRecord = new LanguageRecord("fre");
-        deuRecord = new LanguageRecord("deu");
-        recordsContainer = new LanguageRecord[] {engRecord, spaRecord, freRecord, deuRecord};
+        engRecord = new EnglishLangRecord("eng");
+        spaRecord = new EnglishLangRecord("spa");
+        freRecord = new EnglishLangRecord("fre");
+        deuRecord = new EnglishLangRecord("deu");
+        recordsContainer = new EnglishLangRecord[] {engRecord, spaRecord, freRecord, deuRecord};
     }
     //GETTERS
     public static LanguageRecordsContainer getInstance(){

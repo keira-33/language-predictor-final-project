@@ -1,4 +1,4 @@
-package textanalysis;
+package text_analysis;
 
 public class WordLengthAnalyzer extends TextAnalyzer {
     

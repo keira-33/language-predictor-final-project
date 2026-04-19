@@ -1,5 +1,5 @@
 
-package textanalysis;
+package text_analysis;
 
 import java.io.FileReader;
 

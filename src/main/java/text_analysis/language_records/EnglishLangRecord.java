@@ -1,13 +1,13 @@
 
-package textanalysis;
+package text_analysis.language_records;
 
 
-public class LanguageRecord {
+public class EnglishLangRecord {
     private String textCollection;
     private String langCode;
     
     
-    public LanguageRecord(String langCode){
+    public EnglishLangRecord(String langCode){
         this.langCode = langCode; 
     }
     

@@ -1,4 +1,4 @@
-package textanalysis;
+package text_analysis;
 
 public class TrigramAnalyzer extends TextAnalyzer {
     

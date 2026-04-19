@@ -30,12 +30,10 @@ public abstract class TextAnalyzer {
         }
     }
     public static String processText(String text){
-        //this will prepare text for analysis --> lowercase, remove punctuation 
-        //NEEDS TO BE UPDATED 
-        //remove punctuation code from: https://www.geeksforgeeks.org/dsa/removing-punctuations-given-string/
+        //NORMALIZES TEXT --> LOWERCASE ✔, REMOVE PUNCTUATION (KEEP WHITESPACE) ✔
+        //remove punctuation code borrowed from: https://www.geeksforgeeks.org/dsa/removing-punctuations-given-string/
         text = text.replaceAll("\\p{Punct}","");
         //end of borrowed code
-        //set a locale for lowercase function? --> https://www.geeksforgeeks.org/java/java-string-tolowercase-with-examples/
         text = text.toLowerCase();
         
         return text;

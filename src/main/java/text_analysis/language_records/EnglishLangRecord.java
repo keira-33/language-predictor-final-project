@@ -2,22 +2,18 @@
 package text_analysis.language_records;
 
 
-public class EnglishLangRecord {
-    private String textCollection;
-    private String langCode;
+public class EnglishLangRecord extends LangRecord{
+    //SINGLETON CLASS
+    private static EnglishLangRecord single_instance = null;
     
-    
-    public EnglishLangRecord(String langCode){
-        this.langCode = langCode; 
+    private EnglishLangRecord(String langCode, String fileName1, String fileName2){
+        super(langCode, fileName1, fileName2);
     }
-    
-    //setters:
-    public void setTextCollection(String text){
-        this.textCollection = text;
-    }
-    
-    //getters:
-    public String getLangCode(){
-        return this.langCode;
+    // SINGLETON METHOD:
+    public static EnglishLangRecord getInstance(String langCode,String fileName1, String fileName2){
+        if (single_instance == null){
+            single_instance = new EnglishLangRecord(langCode,fileName1,fileName2);
+        }
+        return single_instance; 
     }
 }

@@ -10,17 +10,16 @@ package model_view_controller;
  */
 public class View extends javax.swing.JFrame {
     private Model model;
+    private Controller controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(View.class.getName());
 
     /**
-     * Creates new form FP1Experiment
+     * Creates new form View1
      */
-    public View() {
-        initComponents();
-    }
-    
-    public View(Model m){
+    public View(Model m, Controller c){
         this.model = m; 
+        this.controller = c;
+        initComponents();
     }
 
     /**
@@ -32,124 +31,125 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        label2 = new java.awt.Label();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        displayTxtLbl = new javax.swing.JLabel();
+        userTextJPanel = new javax.swing.JPanel();
+        userTextJScrollPane = new javax.swing.JScrollPane();
+        userTextJTextArea = new javax.swing.JTextArea();
+        cursorBtn = new javax.swing.JButton();
+        aiResultJPanel = new javax.swing.JPanel();
+        backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        label1.setForeground(new java.awt.Color(255, 55, 55));
-        label1.setText("Enter text to identify the language");
+        displayTxtLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/display_txt.png"))); // NOI18N
+        getContentPane().add(displayTxtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 50));
 
-        jPanel1.setBackground(new java.awt.Color(142, 142, 142));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        userTextJPanel.setBackground(new java.awt.Color(176, 221, 253));
+        userTextJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        userTextJScrollPane.setBackground(new java.awt.Color(176, 221, 253));
 
-        label2.setText("Start typing below:");
+        userTextJTextArea.setBackground(new java.awt.Color(176, 221, 253));
+        userTextJTextArea.setColumns(20);
+        userTextJTextArea.setRows(5);
+        userTextJScrollPane.setViewportView(userTextJTextArea);
 
-        jButton1.setText("Identify Text");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cursorBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/cursor-icon.png"))); // NOI18N
+        cursorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cursorBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+        javax.swing.GroupLayout userTextJPanelLayout = new javax.swing.GroupLayout(userTextJPanel);
+        userTextJPanel.setLayout(userTextJPanelLayout);
+        userTextJPanelLayout.setHorizontalGroup(
+            userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+        userTextJPanelLayout.setVerticalGroup(
+            userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addGroup(userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userTextJPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userTextJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(126, 126, 126)))
-                .addGap(15, 15, 15))
+        aiResultJPanel.setBackground(new java.awt.Color(176, 221, 253));
+        aiResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
+
+        javax.swing.GroupLayout aiResultJPanelLayout = new javax.swing.GroupLayout(aiResultJPanel);
+        aiResultJPanel.setLayout(aiResultJPanelLayout);
+        aiResultJPanelLayout.setHorizontalGroup(
+            aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+        aiResultJPanelLayout.setVerticalGroup(
+            aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 180, Short.MAX_VALUE)
         );
+
+        getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg_img.png"))); // NOI18N
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cursorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursorBtnActionPerformed
         // TODO add your handling code here:
+        System.out.println(userTextJTextArea.getText());
         if(model!=null){
-            model.changeTheData(jTextArea1.getText());
+            model.changeTheData(userTextJTextArea.getText());  
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (controller != null){
+            controller.changeTheData(userTextJTextArea.getText());
+        }
+    }//GEN-LAST:event_cursorBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new View().setVisible(true));
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        //java.awt.EventQueue.invokeLater(() -> new View().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
+    private javax.swing.JPanel aiResultJPanel;
+    private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JButton cursorBtn;
+    private javax.swing.JLabel displayTxtLbl;
+    private javax.swing.JPanel userTextJPanel;
+    private javax.swing.JScrollPane userTextJScrollPane;
+    private javax.swing.JTextArea userTextJTextArea;
     // End of variables declaration//GEN-END:variables
 }

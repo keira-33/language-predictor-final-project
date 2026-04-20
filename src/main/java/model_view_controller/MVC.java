@@ -8,7 +8,9 @@ public class MVC {
         
         Controller c = new Controller(m);
         
-        View v1 = new View(m);
+        View v1 = new View(m, c);
+        
+        v1.setVisible(true);
 
     }
 }

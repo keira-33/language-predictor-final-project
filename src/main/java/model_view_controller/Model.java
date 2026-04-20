@@ -11,10 +11,14 @@ public class Model {
         
     }
     //Model needs observer list 
-    public void changeTheData(String newValue){
-        inputtedTxt = newValue;
-        System.out.println("The data is now: " + inputtedTxt);
+    public void changeTheData(String newText){
+        inputtedTxt = newText;
+        System.out.println("The text is now: " + inputtedTxt);
         //notifyObservers();
+    }
+    
+    public void doSomething(String text){
+        System.out.println("I received the new text!");
     }
     
 //    public void changeTheData(String newValue){

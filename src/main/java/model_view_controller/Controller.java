@@ -9,8 +9,8 @@ public class Controller {
     private String inputtedTxt;
     //private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Controller.class.getName());
     
-    public Controller() {
-    }
+//    public Controller() {
+//    }
 
     public Controller(Model m){
         this.model = m;

@@ -34,5 +34,11 @@ public class LangRecord {
         tempStr += TextAnalyzer.readFileIntoString(this.fileName2, this.langCode);
         //normalize & set tempStr to text collection
         this.textCollection = TextAnalyzer.processText(tempStr);
+        
+        
+        //TESTING -- REMOVE FOR FINAL:
+        System.out.println(langCode + "I did it!");
+        System.out.println(textCollection.substring(0, 20));
+        // TESTING TESTING TESTING 
     }
 }

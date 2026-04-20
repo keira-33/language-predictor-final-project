@@ -16,7 +16,7 @@ public abstract class TextAnalyzer {
         //partially followed geeksforgeeks filereader class page and file reader code from my csc260 project
         //issues with this 1. use a buff reader too? 2. string concatentation in while loop is making a new string every time (bad memory wise)
         try{
-            FileReader fileReader = new FileReader("csc261-corpora/corpora/" + langCode + fileName);
+            FileReader fileReader = new FileReader("csc261-corpora/corpora/" + langCode + "/"+ fileName);
             String fileAsString = "";
             int character;
             while ((character = fileReader.read()) != -1) { 
@@ -37,5 +37,13 @@ public abstract class TextAnalyzer {
         text = text.toLowerCase();
         
         return text;
+    }
+    
+    public String removeWhiteSpace(String textCollection){
+        // REMOVES THE WHITESPACE FROM A GIVEN STRING OBJECT OF TEXT 
+        //remove whitespace code borrowed from: https://www.w3schools.com/java/java_howto_remove_whitespace.asp
+        String noSpacesCollection = textCollection.replaceAll("\\s+", ""); //replaceAll returns a new String object 
+        //end of borrowed code
+        return noSpacesCollection;
     }
 }

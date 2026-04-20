@@ -9,7 +9,7 @@ package model_view_controller;
  * @author kfrey
  */
 public class View1 extends javax.swing.JFrame {
-    
+    private Model model;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(View1.class.getName());
 
     /**
@@ -17,6 +17,9 @@ public class View1 extends javax.swing.JFrame {
      */
     public View1() {
         initComponents();
+    }
+    public View1(Model m){
+        this.model = m; 
     }
 
     /**
@@ -29,6 +32,11 @@ public class View1 extends javax.swing.JFrame {
     private void initComponents() {
 
         displayTxtLbl = new javax.swing.JLabel();
+        userTextJPanel = new javax.swing.JPanel();
+        userTextJScrollPane = new javax.swing.JScrollPane();
+        userTextJTextArea = new javax.swing.JTextArea();
+        cursorBtn = new javax.swing.JButton();
+        aiResultJPanel = new javax.swing.JPanel();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,12 +46,77 @@ public class View1 extends javax.swing.JFrame {
         getContentPane().add(displayTxtLbl);
         displayTxtLbl.setBounds(70, 10, 375, 50);
 
+        userTextJPanel.setBackground(new java.awt.Color(176, 221, 253));
+        userTextJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
+
+        userTextJScrollPane.setBackground(new java.awt.Color(176, 221, 253));
+
+        userTextJTextArea.setBackground(new java.awt.Color(176, 221, 253));
+        userTextJTextArea.setColumns(20);
+        userTextJTextArea.setRows(5);
+        userTextJScrollPane.setViewportView(userTextJTextArea);
+
+        cursorBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/cursor-icon.png"))); // NOI18N
+        cursorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cursorBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout userTextJPanelLayout = new javax.swing.GroupLayout(userTextJPanel);
+        userTextJPanel.setLayout(userTextJPanelLayout);
+        userTextJPanelLayout.setHorizontalGroup(
+            userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        userTextJPanelLayout.setVerticalGroup(
+            userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addGroup(userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userTextJPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userTextJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(userTextJPanel);
+        userTextJPanel.setBounds(10, 70, 510, 103);
+
+        aiResultJPanel.setBackground(new java.awt.Color(176, 221, 253));
+        aiResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
+
+        javax.swing.GroupLayout aiResultJPanelLayout = new javax.swing.GroupLayout(aiResultJPanel);
+        aiResultJPanel.setLayout(aiResultJPanelLayout);
+        aiResultJPanelLayout.setHorizontalGroup(
+            aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        aiResultJPanelLayout.setVerticalGroup(
+            aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 180, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(aiResultJPanel);
+        aiResultJPanel.setBounds(310, 180, 210, 190);
+
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg_img.png"))); // NOI18N
         getContentPane().add(backgroundLabel);
         backgroundLabel.setBounds(0, 0, 530, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cursorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursorBtnActionPerformed
+        // TODO add your handling code here:
+        if(model!=null){
+            model.changeTheData(userTextJTextArea.getText());
+        }
+    }//GEN-LAST:event_cursorBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,7 +144,12 @@ public class View1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aiResultJPanel;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JButton cursorBtn;
     private javax.swing.JLabel displayTxtLbl;
+    private javax.swing.JPanel userTextJPanel;
+    private javax.swing.JScrollPane userTextJScrollPane;
+    private javax.swing.JTextArea userTextJTextArea;
     // End of variables declaration//GEN-END:variables
 }

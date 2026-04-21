@@ -20,7 +20,7 @@ public class LanguageRecordsContainer {
     private FrenchLangRecord freRecord;
     private GermanLangRecord deuRecord;
     
-    private char[] letterDataset = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','á','é','í','ó','ú','ñ','ü','à','è','ù','ç','â','ê','î','ô','û','ë','ï','ä','ö','ß'};
+    private static char[] letterDataset = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','á','é','í','ó','ú','ñ','ü','à','è','ù','ç','â','ê','î','ô','û','ë','ï','ä','ö','ß'};
     
     private static LanguageRecordsContainer single_instance = null;
     
@@ -40,7 +40,7 @@ public class LanguageRecordsContainer {
         return single_instance; 
     }
     //GETTERS
-    public char[] getLetterDataset(){
+    public static char[] getLetterDataset(){
         return letterDataset;
     }
     

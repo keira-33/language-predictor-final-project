@@ -10,7 +10,7 @@ public abstract class TextAnalyzer {
         
     }
     
-    public abstract String analyzeText();
+    public abstract double[] analyzeText(String textCollection);
     
     public static String readFileIntoString(String fileName, String langCode){
         //partially followed geeksforgeeks filereader class page and file reader code from my csc260 project
@@ -46,4 +46,5 @@ public abstract class TextAnalyzer {
         //end of borrowed code
         return noSpacesCollection;
     }
+    
 }

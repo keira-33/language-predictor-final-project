@@ -9,7 +9,7 @@ public class LetterFrequenciesAnalyzer extends TextAnalyzer {
     }
     
     @Override
-        public String analyzeText(){
-            return "pass";
-        }
+    public double[] analyzeText(String textCollection){
+        return "pass";
+    }
 }

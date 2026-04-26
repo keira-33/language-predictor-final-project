@@ -31,7 +31,7 @@ public class WordLengthAnalyzer extends TextAnalyzer {
         //turn the hash table into a vector using the formula --> return it
         double[] distVector = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
         for(int i=0; i<distVector.length; i++){ // i is n - 1
-            double result = hash.get(i+1);
+            double result = (double) hash.get(i+1);
             result = result/wordCount;
             distVector[i] = result;
         }

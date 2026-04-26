@@ -30,10 +30,10 @@ public class LangRecord {
         //ASSIGNS NORMALIZED/CLEANED TEXT TO TEXTCOLLECTION FIELD 
         String tempStr = "";
         //read in both files assigned to the language --> assign to temp string
-        tempStr += TextAnalyzer.readFileIntoString(this.fileName1, this.langCode);
-        tempStr += TextAnalyzer.readFileIntoString(this.fileName2, this.langCode);
+        tempStr += TextAnalyzer.readAndProcessFileIntoString(this.fileName1, this.langCode);
+        tempStr += TextAnalyzer.readAndProcessFileIntoString(this.fileName2, this.langCode);
         //normalize & set tempStr to text collection
-        this.textCollection = TextAnalyzer.processText(tempStr);
+        this.textCollection = tempStr;
         
         
         //TESTING -- REMOVE FOR FINAL:

@@ -21,7 +21,7 @@ public class Model {
         System.out.println("The text is now: " + inputtedTxt);
         //testing gemini stuff: //
         System.out.println("Gemini spit this out:");
-        System.out.println(GeminiQueryManager.get().promptGemini("Give me the colors in the rainbow in color order!"));
+        System.out.println(GeminiQueryManager.get().promptGemini("Given this text: Hola como estas? Bienvenidos a mi casa! ; What language do you think that text is written in and give two bullet points why you think this."));
         
         //end of testing gemini stuff//
         

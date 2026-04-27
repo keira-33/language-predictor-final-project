@@ -29,7 +29,7 @@ public class BigramAnalyzer extends TextAnalyzer {
         // if the character [i] or next character [i+1] is not whitespace, then increment count in hashtable
         for(int i=0; i<(textCollection.length()-1); i++){ //text collection -1 to protect from end index out range
             String tmpKey = Character.toString(letterSet[i]) + Character.toString(letterSet[i+1]);
-            //checks if bigram is in hashmap (is valid) and neithe character is a whitespace --> increment both hashmap and total counts 
+            //checks if bigram is in hashmap (is valid) and neither character is a whitespace --> increment both hashmap and total counts 
             if(hash.containsKey(tmpKey) && !Character.isWhitespace(letterSet[i]) && !Character.isWhitespace(letterSet[i+1])){
                 hash.put(tmpKey,hash.get(tmpKey)+1);
                 totalBigramCt ++;

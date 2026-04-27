@@ -7,6 +7,7 @@ public class BigramAnalyzer extends TextAnalyzer {
     }
     @Override
     public double[] analyzeText(String textCollection){
-        return "pass";
+        double[] temporary = {0.0,0.1};
+        return temporary;
     }
 }

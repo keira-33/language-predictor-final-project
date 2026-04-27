@@ -4,6 +4,7 @@ package model_view_controller;
 import java.util.ArrayList;
 import text_analysis.LanguageRecordsContainer;
 import text_analysis.language_records.EnglishLangRecord;
+import gemini.GeminiQueryManager;
 
 public class Model {
     private String inputtedTxt;
@@ -18,6 +19,12 @@ public class Model {
     public void changeTheData(String newText){
         inputtedTxt = newText;
         System.out.println("The text is now: " + inputtedTxt);
+        //testing gemini stuff: //
+        System.out.println("Gemini spit this out:");
+        System.out.println(GeminiQueryManager.get().promptGemini("Give me the colors in the rainbow in color order!"));
+        
+        //end of testing gemini stuff//
+        
         //notifyObservers();
         
         //testing:

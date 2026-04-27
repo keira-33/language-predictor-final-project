@@ -8,6 +8,12 @@ public class LangRecord {
     protected String langCode;
     private String fileName1;
     private String fileName2;
+    //distribution vectors - only computed and stored once 
+    private double[] bigramDistVector;
+    private double[] letterFreqDistVector;
+    private double[] trigramDistVector;
+    private double[] wordLengthDistVector;
+    
     
     public LangRecord(String langCode, String fileName1, String fileName2){
         this.langCode = langCode; 
@@ -24,7 +30,7 @@ public class LangRecord {
         return textCollection;
     }
     
-     public void initializeFilesIntoTextCollection(){
+    public void initializeFilesIntoTextCollection(){
         //LOADS EACH OF THE TWO ASSIGNED FILES IN AND PROCESSES THE RAW TEXT 
         //USING TEXTANALYZER CLASS METHODS
         //ASSIGNS NORMALIZED/CLEANED TEXT TO TEXTCOLLECTION FIELD 
@@ -40,5 +46,35 @@ public class LangRecord {
         System.out.println(langCode + "I did it!");
         System.out.println(textCollection.substring(0, 20));
         // TESTING TESTING TESTING 
+    }
+    
+    
+    
+   //getters
+    public double[] getBigramVector(){
+        return this.bigramDistVector;
+    }
+    public double[] getLetterFreqVector(){
+        return this.letterFreqDistVector;
+    }
+    public double[] getTrigramVector(){
+        return this.trigramDistVector;
+    }
+    public double[] getWordLengthVector(){
+        return this.wordLengthDistVector;
+    }
+
+   //setters
+    public void setBigramVector(double[] vector){
+        this.bigramDistVector = vector;
+    }
+    public void setLetterFreqVector(double[] vector){
+        this.letterFreqDistVector = vector;
+    }
+    public void setTrigramVector(double[] vector){
+        this.trigramDistVector = vector;
+    }
+    public void setWordLengthVector(double[] vector){
+        this.wordLengthDistVector = vector;
     }
 }

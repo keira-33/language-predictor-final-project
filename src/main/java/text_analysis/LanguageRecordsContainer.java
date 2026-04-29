@@ -1,9 +1,11 @@
 
 package text_analysis;
 
+import java.util.ArrayList;
 import text_analysis.language_records.EnglishLangRecord;
 import text_analysis.language_records.FrenchLangRecord;
 import text_analysis.language_records.GermanLangRecord;
+import text_analysis.language_records.LangRecord;
 import text_analysis.language_records.SpanishLangRecord;
 
 public class LanguageRecordsContainer {
@@ -15,10 +17,12 @@ public class LanguageRecordsContainer {
         "die-verwandlung-franz-kafka-1917.txt", "fenaco-stadt-land-monitor-2021-2023.txt"};
     //eng:0,1 | spa: 2,3 | fre: 4,5 | deu: 6,7 
     
-    private EnglishLangRecord engRecord;
-    private SpanishLangRecord spaRecord;
-    private FrenchLangRecord freRecord;
-    private GermanLangRecord deuRecord;
+    private static EnglishLangRecord engRecord;
+    private static SpanishLangRecord spaRecord;
+    private static FrenchLangRecord freRecord;
+    private static GermanLangRecord deuRecord;
+    
+    private static ArrayList<LangRecord> allRecords;
     
     private static char[] letterDataset = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','á','é','í','ó','ú','ñ','ü','à','è','ù','ç','â','ê','î','ô','û','ë','ï','ä','ö','ß'};
     
@@ -30,6 +34,12 @@ public class LanguageRecordsContainer {
         spaRecord = SpanishLangRecord.getInstance("spa", textFiles[2], textFiles[3]);
         freRecord = FrenchLangRecord.getInstance("fre", textFiles[4], textFiles[5]);
         deuRecord = GermanLangRecord.getInstance("deu", textFiles[6], textFiles[7]);
+        //add all the records to the list
+        allRecords.add(engRecord);
+        allRecords.add(spaRecord);
+        allRecords.add(freRecord);
+        allRecords.add(deuRecord);
+        
     }
 
     // SINGLETON METHOD:
@@ -43,7 +53,6 @@ public class LanguageRecordsContainer {
     public static char[] getLetterDataset(){
         return letterDataset;
     }
-    
     public EnglishLangRecord getEnglishRecord(){
         return engRecord;
     }
@@ -55,6 +64,9 @@ public class LanguageRecordsContainer {
     }
     public GermanLangRecord getGermanRecord(){
         return deuRecord;
+    }
+    public ArrayList<LangRecord> getAllRecords(){
+        return allRecords;
     }
     
     

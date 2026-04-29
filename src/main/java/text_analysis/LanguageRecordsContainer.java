@@ -10,7 +10,6 @@ import text_analysis.language_records.SpanishLangRecord;
 
 public class LanguageRecordsContainer {
     //SINGLETON CLASS
-    // consider a hash map with langCodes as keys {replace 17-22 w hashmap}
     private String[] langCodes = {"eng", "spa", "fre","deu"}; // eng| english; spa | spanish; fre| french; deu| german 
     private String[] textFiles = {"the-great-gatsby-1925.txt", "times-year-in-review-2019.txt", "garcía-gual-historia-mínima-de-la-mitología-2014.txt",
         "biblioteca-de-artica-2017.txt", "20-minutes-magazine-2013.txt", "dans-les-coulisses-des-jeux-vidéo-harry-potter-2019.txt", 
@@ -35,6 +34,7 @@ public class LanguageRecordsContainer {
         freRecord = FrenchLangRecord.getInstance("fre", textFiles[4], textFiles[5]);
         deuRecord = GermanLangRecord.getInstance("deu", textFiles[6], textFiles[7]);
         //add all the records to the list
+        allRecords = new ArrayList<>();
         allRecords.add(engRecord);
         allRecords.add(spaRecord);
         allRecords.add(freRecord);

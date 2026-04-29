@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package model_view_controller;
+
+import javax.swing.JLabel;
 
 /**
  *
  * @author kfrey
  */
-public class View extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements ModelChangedEventHandler{
     private Model model;
     private Controller controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(View.class.getName());
@@ -19,9 +17,10 @@ public class View extends javax.swing.JFrame {
     public View(Model m, Controller c){
         this.model = m; 
         this.controller = c;
+        this.model.attach(this);
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,16 +30,20 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        aiPredictionLabel = new javax.swing.JLabel();
         displayTxtLbl = new javax.swing.JLabel();
         userTextJPanel = new javax.swing.JPanel();
         userTextJScrollPane = new javax.swing.JScrollPane();
         userTextJTextArea = new javax.swing.JTextArea();
         cursorBtn = new javax.swing.JButton();
+        computerResultJPanel = new javax.swing.JPanel();
+        resultLanguageLbl = new javax.swing.JLabel();
         aiResultJPanel = new javax.swing.JPanel();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(aiPredictionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         displayTxtLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/display_txt.png"))); // NOI18N
         getContentPane().add(displayTxtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 50));
@@ -85,8 +88,34 @@ public class View extends javax.swing.JFrame {
 
         getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
+        computerResultJPanel.setBackground(new java.awt.Color(255, 255, 255));
+        computerResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 221, 253), 5));
+
+        resultLanguageLbl.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
+        resultLanguageLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout computerResultJPanelLayout = new javax.swing.GroupLayout(computerResultJPanel);
+        computerResultJPanel.setLayout(computerResultJPanelLayout);
+        computerResultJPanelLayout.setHorizontalGroup(
+            computerResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerResultJPanelLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(resultLanguageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        computerResultJPanelLayout.setVerticalGroup(
+            computerResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerResultJPanelLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(resultLanguageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(computerResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 290, 90));
+
         aiResultJPanel.setBackground(new java.awt.Color(176, 221, 253));
         aiResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
+        aiResultJPanel.setToolTipText("");
 
         javax.swing.GroupLayout aiResultJPanelLayout = new javax.swing.GroupLayout(aiResultJPanel);
         aiResultJPanel.setLayout(aiResultJPanelLayout);
@@ -99,7 +128,7 @@ public class View extends javax.swing.JFrame {
             .addGap(0, 180, Short.MAX_VALUE)
         );
 
-        getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+        getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 210, 190));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg_img.png"))); // NOI18N
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
@@ -113,11 +142,14 @@ public class View extends javax.swing.JFrame {
         if(model!=null){
             model.changeTheData(userTextJTextArea.getText());  
         }
-        if (controller != null){
-            controller.changeTheData(userTextJTextArea.getText());
-        }
     }//GEN-LAST:event_cursorBtnActionPerformed
-
+    
+    @Override
+    public void handleModelChangeEvent() {
+        resultLanguageLbl.setText(model.getThePrediction());
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -144,10 +176,13 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aiPredictionLabel;
     private javax.swing.JPanel aiResultJPanel;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JPanel computerResultJPanel;
     private javax.swing.JButton cursorBtn;
     private javax.swing.JLabel displayTxtLbl;
+    private javax.swing.JLabel resultLanguageLbl;
     private javax.swing.JPanel userTextJPanel;
     private javax.swing.JScrollPane userTextJScrollPane;
     private javax.swing.JTextArea userTextJTextArea;

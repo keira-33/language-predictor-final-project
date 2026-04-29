@@ -41,9 +41,6 @@ public class LetterFrequenciesAnalyzer extends TextAnalyzer {
             distVector[i] = result;
         }
         
-        //TESTING - DELETE LATER
-        System.out.println(distVector);
-        
        return distVector;
         
         

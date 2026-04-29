@@ -28,9 +28,9 @@ public class BigramAnalyzer extends TextAnalyzer {
         //go through each character in textCollection like a sliding window
         // if the character [i] or next character [i+1] is not whitespace, then increment count in hashtable
         for(int i=0; i<(textCollection.length()-1); i++){ //text collection -1 to protect from end index out range
-            String tmpKey = Character.toString(letterSet[i]) + Character.toString(letterSet[i+1]);
+            String tmpKey = Character.toString(textCollection.charAt(i)) + Character.toString(textCollection.charAt(i+1));
             //checks if bigram is in hashmap (is valid) and neither character is a whitespace --> increment both hashmap and total counts 
-            if(hash.containsKey(tmpKey) && !Character.isWhitespace(letterSet[i]) && !Character.isWhitespace(letterSet[i+1])){
+            if(hash.containsKey(tmpKey) && !Character.isWhitespace(textCollection.charAt(i)) && !Character.isWhitespace(textCollection.charAt(i+1))){
                 hash.put(tmpKey,hash.get(tmpKey)+1);
                 totalBigramCt ++;
             }    
@@ -45,7 +45,7 @@ public class BigramAnalyzer extends TextAnalyzer {
         for(int i=0; i<letterSet.length; i++){ // first letter in bigram
             for(int j=0; j<letterSet.length; j++){ // second letter in bigram
                 String bigram = Character.toString(letterSet[i]) + Character.toString(letterSet[j]);
-                distVector[(i*letterSet.length)+j]= (hash.get(bigram))/totalBigramCt;// initialize each count as 0
+                distVector[(i*letterSet.length)+j]= (hash.get(bigram))/(double)totalBigramCt;// initialize each count as 0
             }
         }
         

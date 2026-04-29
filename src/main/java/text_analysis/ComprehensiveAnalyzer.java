@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import text_analysis.language_records.LangRecord;
 
 public class ComprehensiveAnalyzer {
-    //does all of them
+    //does all of the analyzers
     //SINGLETON CLASS
     private static ComprehensiveAnalyzer inst=null;
     private static ArrayList<LangRecord> allRecs;
     
     private ComprehensiveAnalyzer(){
+        allRecs = new ArrayList<>();
         allRecs = LanguageRecordsContainer.getInstance().getAllRecords();
     }
     // SINGLETON METHOD:
@@ -61,5 +62,6 @@ public class ComprehensiveAnalyzer {
             record.setWordLengthVector(wordLenObj.analyzeText(record.getTextCollection()));
         }
     }
+    
     
 }

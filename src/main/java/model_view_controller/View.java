@@ -185,8 +185,8 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     
     public void displayAIResponseTxt(){
         //DISPLAYS THE RESPONSE FORM GEMINI NICELY IN THE TEXT AREA 
-        String[] aiResponse = model.getGeminiResponse().split("|");
-        String toPrint = "Gemini Prediction: \n";
+        String[] aiResponse = model.getGeminiResponse().split("\\|");
+        String toPrint = "";
         for(int i=0; i< aiResponse.length; i++){
             toPrint += "• "+ aiResponse[i]+"\n";
         }

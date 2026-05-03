@@ -117,30 +117,6 @@ public class Model {
     }
     
     
-    
-    
-
-    public void changeTheDataOLDMETHODFORTESTING_DELETE_LATER(String newText){
-        inputtedTxt = newText;
-        System.out.println("The text is now: " + inputtedTxt);
-        //testing gemini stuff: //
-        //System.out.println("Gemini spit this out:");
-        //System.out.println(GeminiQueryManager.get().promptGemini("Given this text: Hola como estas? Bienvenidos a mi casa! ; What language do you think that text is written in and give two bullet points why you think this."));
-        //HERE: BROADCAST ACTION CHANGELISTENER TYPE THING FOR VIEW TO GET 
-        guessedLang = "Spanish";
-        notifyObservers();
-        
-        
-        //end of testing gemini stuff//
-        
-        //notifyObservers();
-        
-        //testing:
-        //System.out.println(recordsContainer.getEnglishRecord().getTextCollection().substring(0, 20));
-//        EnglishLangRecord tmpEng = recordsContainer.getEnglishRecord();
-//        System.out.println(tmpEng.getTextCollection().substring(0, 20));
-    }
-    
     private void notifyObservers(){
         for(ModelChangedEventHandler observer : observers){
             observer.handleModelChangeEvent();

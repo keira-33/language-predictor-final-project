@@ -41,16 +41,22 @@ public class TrigramAnalyzer extends TextAnalyzer {
         }
         
         //go through each key in the hash table and create the final vector using formula 
-        // to find index of bigram in arraylist-- i*n + j (page plus offset basically)
+        // to find index of trigram in arraylist-- i*n + j (page plus offset basically)
         //n = size of letterSet 
-        // i = first bigram char index in letter set (think of first letter as the page --> i*n is page space address)
-        // j = second bigram char index in letter set (think of this as the offset within the first letter page)
+        // i = first trigram char index in letter set (think of first letter as the page --> i*n is page space address)
+        // j = second trigram char index in letter set (think of this as the offset within the first letter page)
+        // k = third trigram char index in letter set (think of this as the second offset within the first/second letter page)
+        if(totalTrigramCt == 0){ //protection against really short texts --> prevent the division by 0 later on
+           double[] distVector = new double[(letterSet.length * letterSet.length * letterSet.length)]; //0.0 default vals
+           return distVector;
+        }
+        
         double[] distVector = new double[(letterSet.length * letterSet.length * letterSet.length)];
         for(int i=0; i<letterSet.length; i++){ // first letter in trigram
             for(int j=0; j<letterSet.length; j++){ // second letter in trigram
                 for(int k=0; k<letterSet.length; k++){ // third letter in trigram
                     String trigram = Character.toString(letterSet[i]) + Character.toString(letterSet[j])+ Character.toString(letterSet[k]);
-                    distVector[(i*letterSet.length)+j]= (hash.get(trigram))/(double)totalTrigramCt;// initialize each count as 0
+                    distVector[(i*letterSet.length*letterSet.length)+(j*letterSet.length)+k]= (hash.get(trigram))/(double)totalTrigramCt;// initialize each count as 0
                 }
             }
         }

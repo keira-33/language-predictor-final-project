@@ -33,8 +33,8 @@ public class Model {
         //initialize all the languages + initial analysis
         recordsContainer = new ArrayList<>();
         recordsContainer = LanguageRecordsContainer.getInstance().getAllRecords();
-        //run all the analysis 
-        ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords();
+        //run all the analysis --> model only gets instantiated x1 so analyzers only get run x1 for base languages 
+        ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords(); 
     }
     
     public void changeTheData(String newText){
@@ -44,7 +44,8 @@ public class Model {
        //MUST DETERMINE GUESSED LANG before calling notify
        guessedLang = runCosineSimilarityOnAll();
        //testing gemini stuff: //
-       geminiResponse = GeminiQueryManager.get().promptGemini("Given this text:"+ inputtedTxt +"; What language do you think that text is written in and give two bullet points why you think this.");
+       geminiResponse = GeminiQueryManager.get().promptGemini("Given this text:"+ inputtedTxt +"; What language do you think that text is written in and give two bullet points why you think this. "
+               + "Only respond in this format (separate all points with a pipe|): predicted language | reason one | reason 2");
        notifyObservers();
     }
     
@@ -150,6 +151,7 @@ public class Model {
         observers.add(o);
     }
     
+    //getters:
     public String getThePrediction(){
         return guessedLang;
     }

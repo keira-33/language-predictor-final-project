@@ -25,7 +25,11 @@ public class CosineSimilarityAnalyzer {
     public static double computeCosineSimilarityOfTwoVectors(double[] vectorA, double[] vectorB){
         // Cosine Similarity Score:
         // compute by: (dot product of vA and vB)/((magnitude of vA) x (magnitude of vB))
-        double cosineSimScore = (computeDotProductOfTwoVectors(vectorA, vectorB))/(computeMagnitudeOfVector(vectorA) * computeMagnitudeOfVector(vectorB));
+        double magnitudesProduct = (computeMagnitudeOfVector(vectorA) * computeMagnitudeOfVector(vectorB));
+        if(magnitudesProduct == 0.0){// to protect against division by 0 --> gives NaN
+            return 0.0; 
+        }
+        double cosineSimScore = (computeDotProductOfTwoVectors(vectorA, vectorB))/magnitudesProduct;
         System.out.println(cosineSimScore);
         return cosineSimScore;
     }

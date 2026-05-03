@@ -30,6 +30,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         displayTxtLbl = new javax.swing.JLabel();
         userTextJPanel = new javax.swing.JPanel();
         userTextJScrollPane = new javax.swing.JScrollPane();
@@ -40,14 +41,25 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         aiResultJPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         aiResponseJTextArea = new javax.swing.JTextArea();
+        geminiPredLbl = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
-        aiPredictionLabel = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         displayTxtLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/display_txt.png"))); // NOI18N
-        getContentPane().add(displayTxtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 50));
+        getContentPane().add(displayTxtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, 50));
 
         userTextJPanel.setBackground(new java.awt.Color(176, 221, 253));
         userTextJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
@@ -71,7 +83,8 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         userTextJPanelLayout.setHorizontalGroup(
             userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userTextJPanelLayout.createSequentialGroup()
-                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -79,15 +92,17 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         userTextJPanelLayout.setVerticalGroup(
             userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userTextJPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(userTextJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(userTextJScrollPane))
                 .addContainerGap())
         );
 
-        getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 120));
 
         computerResultJPanel.setBackground(new java.awt.Color(255, 255, 255));
         computerResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 221, 253), 5));
@@ -99,20 +114,14 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         computerResultJPanel.setLayout(computerResultJPanelLayout);
         computerResultJPanelLayout.setHorizontalGroup(
             computerResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerResultJPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(resultLanguageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(resultLanguageLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
         computerResultJPanelLayout.setVerticalGroup(
             computerResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerResultJPanelLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(resultLanguageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(resultLanguageLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
 
-        getContentPane().add(computerResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 290, 90));
+        getContentPane().add(computerResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 750, 100));
 
         aiResultJPanel.setBackground(new java.awt.Color(176, 221, 253));
         aiResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
@@ -123,29 +132,39 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         aiResponseJTextArea.setRows(5);
         jScrollPane1.setViewportView(aiResponseJTextArea);
 
+        geminiPredLbl.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        geminiPredLbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        geminiPredLbl.setText("Gemini's Prediction:");
+        geminiPredLbl.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout aiResultJPanelLayout = new javax.swing.GroupLayout(aiResultJPanel);
         aiResultJPanel.setLayout(aiResultJPanelLayout);
         aiResultJPanelLayout.setHorizontalGroup(
             aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aiResultJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                    .addGroup(aiResultJPanelLayout.createSequentialGroup()
+                        .addComponent(geminiPredLbl)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         aiResultJPanelLayout.setVerticalGroup(
             aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiResultJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addComponent(geminiPredLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 210, 190));
+        getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 750, 170));
 
-        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg_img.png"))); // NOI18N
-        backgroundLabel.setText("gemini");
-        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
-        getContentPane().add(aiPredictionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 188, 168));
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg-img2.png"))); // NOI18N
+        backgroundLabel.setText("");
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,10 +179,19 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     
     @Override
     public void handleModelChangeEvent() {
-        resultLanguageLbl.setText(model.getThePrediction());
-        aiResponseJTextArea.setText(model.getGeminiResponse());
+        resultLanguageLbl.setText("Program Prediction: "+model.getThePrediction());
+        displayAIResponseTxt();
     }
     
+    public void displayAIResponseTxt(){
+        //DISPLAYS THE RESPONSE FORM GEMINI NICELY IN THE TEXT AREA 
+        String[] aiResponse = model.getGeminiResponse().split("|");
+        String toPrint = "Gemini Prediction: \n";
+        for(int i=0; i< aiResponse.length; i++){
+            toPrint += "• "+ aiResponse[i]+"\n";
+        }
+        aiResponseJTextArea.setText(toPrint);
+    }
     
     /**
      * @param args the command line arguments
@@ -191,13 +219,14 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel aiPredictionLabel;
     private javax.swing.JTextArea aiResponseJTextArea;
     private javax.swing.JPanel aiResultJPanel;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JPanel computerResultJPanel;
     private javax.swing.JButton cursorBtn;
     private javax.swing.JLabel displayTxtLbl;
+    private javax.swing.JLabel geminiPredLbl;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel resultLanguageLbl;
     private javax.swing.JPanel userTextJPanel;

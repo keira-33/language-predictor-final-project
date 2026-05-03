@@ -41,6 +41,10 @@ public class BigramAnalyzer extends TextAnalyzer {
         //n = size of letterSet 
         // i = first bigram char index in letter set (think of first letter as the page --> i*n is page space address)
         // j = second bigram char index in letter set (think of this as the offset within the first letter page)
+        if(totalBigramCt == 0){ //protection against really short texts --> prevent the division by 0 later on
+           double[] distVector = new double[(letterSet.length * letterSet.length)]; //0.0 default vals
+           return distVector;
+        }
         double[] distVector = new double[(letterSet.length * letterSet.length)];
         for(int i=0; i<letterSet.length; i++){ // first letter in bigram
             for(int j=0; j<letterSet.length; j++){ // second letter in bigram

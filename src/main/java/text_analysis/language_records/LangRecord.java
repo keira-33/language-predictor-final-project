@@ -6,6 +6,7 @@ import text_analysis.TextAnalyzer;
 public class LangRecord {
     protected String textCollection;
     protected String langCode;
+    protected String langName;
     private String fileName1;
     private String fileName2;
     //distribution vectors - only computed and stored once 
@@ -14,17 +15,23 @@ public class LangRecord {
     private double[] trigramDistVector;
     private double[] wordLengthDistVector;
     
+    private double cosineSimScore;
     
-    public LangRecord(String langCode, String fileName1, String fileName2){
+    
+    public LangRecord(String langCode, String fileName1, String fileName2, String langName){
         this.langCode = langCode; 
         this.fileName1 = fileName1;
         this.fileName2 = fileName2;
+        this.langName = langName;
         initializeFilesIntoTextCollection();
     }
     
     //getters
     public String getLangCode(){
         return langCode;
+    }
+    public String getLangName(){
+        return langName;
     }
     public String getTextCollection(){
         return textCollection;
@@ -63,6 +70,9 @@ public class LangRecord {
     public double[] getWordLengthVector(){
         return this.wordLengthDistVector;
     }
+    public double getCosineSimScore(){
+        return this.cosineSimScore;
+    }
 
    //setters
     public void setBigramVector(double[] vector){
@@ -76,5 +86,8 @@ public class LangRecord {
     }
     public void setWordLengthVector(double[] vector){
         this.wordLengthDistVector = vector;
+    }
+    public void setCosineSimScore(double value){
+        this.cosineSimScore = value;
     }
 }

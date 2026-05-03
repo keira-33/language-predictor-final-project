@@ -30,7 +30,6 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        aiPredictionLabel = new javax.swing.JLabel();
         displayTxtLbl = new javax.swing.JLabel();
         userTextJPanel = new javax.swing.JPanel();
         userTextJScrollPane = new javax.swing.JScrollPane();
@@ -39,11 +38,13 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         computerResultJPanel = new javax.swing.JPanel();
         resultLanguageLbl = new javax.swing.JLabel();
         aiResultJPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        aiResponseJTextArea = new javax.swing.JTextArea();
         backgroundLabel = new javax.swing.JLabel();
+        aiPredictionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(aiPredictionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         displayTxtLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/display_txt.png"))); // NOI18N
         getContentPane().add(displayTxtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 50));
@@ -117,21 +118,34 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         aiResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 114, 171), 5));
         aiResultJPanel.setToolTipText("");
 
+        aiResponseJTextArea.setBackground(new java.awt.Color(176, 221, 253));
+        aiResponseJTextArea.setColumns(20);
+        aiResponseJTextArea.setRows(5);
+        jScrollPane1.setViewportView(aiResponseJTextArea);
+
         javax.swing.GroupLayout aiResultJPanelLayout = new javax.swing.GroupLayout(aiResultJPanel);
         aiResultJPanel.setLayout(aiResultJPanelLayout);
         aiResultJPanelLayout.setHorizontalGroup(
             aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(aiResultJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         aiResultJPanelLayout.setVerticalGroup(
             aiResultJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiResultJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 210, 190));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg_img.png"))); // NOI18N
+        backgroundLabel.setText("gemini");
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
+        getContentPane().add(aiPredictionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 188, 168));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,6 +161,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     @Override
     public void handleModelChangeEvent() {
         resultLanguageLbl.setText(model.getThePrediction());
+        aiResponseJTextArea.setText(model.getGeminiResponse());
     }
     
     
@@ -177,11 +192,13 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aiPredictionLabel;
+    private javax.swing.JTextArea aiResponseJTextArea;
     private javax.swing.JPanel aiResultJPanel;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JPanel computerResultJPanel;
     private javax.swing.JButton cursorBtn;
     private javax.swing.JLabel displayTxtLbl;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel resultLanguageLbl;
     private javax.swing.JPanel userTextJPanel;
     private javax.swing.JScrollPane userTextJScrollPane;

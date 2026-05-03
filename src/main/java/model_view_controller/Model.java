@@ -7,6 +7,7 @@ import text_analysis.language_records.EnglishLangRecord;
 import gemini.GeminiQueryManager;
 import text_analysis.BigramAnalyzer;
 import text_analysis.ComprehensiveAnalyzer;
+import text_analysis.CosineSimilarityAnalyzer;
 import text_analysis.LetterFrequenciesAnalyzer;
 import text_analysis.TrigramAnalyzer;
 import text_analysis.WordLengthAnalyzer;
@@ -16,8 +17,9 @@ public class Model {
     private String inputtedTxt;
     private ArrayList<ModelChangedEventHandler> observers ;
     private ArrayList<LangRecord> recordsContainer;
-    private ArrayList<double[]> allVectors;
+    private ArrayList<double[]> allInputVectors;
     private String guessedLang;
+    private String geminiResponse;
     
     //all inputted text's vectors 
     private double[] bigramVectorInput;
@@ -27,24 +29,27 @@ public class Model {
     
     public Model(){
         observers = new ArrayList<>();
-        allVectors = new ArrayList<>();
+        allInputVectors = new ArrayList<>();
         //initialize all the languages + initial analysis
         recordsContainer = new ArrayList<>();
         recordsContainer = LanguageRecordsContainer.getInstance().getAllRecords();
+        //run all the analysis 
+        ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords();
     }
     
     public void changeTheData(String newText){
        inputtedTxt = newText;
        runAnalyzersOnInputtedTextAndSetVectors();
-       ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords();
- 
-       //MUST DETERMINE GUESSED LANG 
-       guessedLang = "Spanish";
+       runCosineSimilarityOnAll();
+       //MUST DETERMINE GUESSED LANG before calling notify
+       guessedLang = runCosineSimilarityOnAll();
+       //testing gemini stuff: //
+       geminiResponse = GeminiQueryManager.get().promptGemini("Given this text:"+ inputtedTxt +"; What language do you think that text is written in and give two bullet points why you think this.");
        notifyObservers();
     }
     
     public void runAnalyzersOnInputtedTextAndSetVectors(){
-        allVectors.clear();//wipe old vectors for new input
+        allInputVectors.clear();//wipe old vectors for new input
         //initialize all the analyzer objects
         BigramAnalyzer bigramObjInp = new BigramAnalyzer();
         TrigramAnalyzer trigramObjInp = new TrigramAnalyzer();
@@ -52,23 +57,63 @@ public class Model {
         WordLengthAnalyzer wordLenObjInp = new WordLengthAnalyzer();
         //run the analyze() methods and set values and add vectors to the list
         this.bigramVectorInput = bigramObjInp.analyzeText(this.inputtedTxt);
-        allVectors.add(bigramVectorInput);
+        allInputVectors.add(bigramVectorInput);
         this.letterFreqVectorInput = letterFreqObjInp.analyzeText(this.inputtedTxt);
-        allVectors.add(letterFreqVectorInput);
+        allInputVectors.add(letterFreqVectorInput);
         this.trigramVectorInput = trigramObjInp.analyzeText(this.inputtedTxt);
-        allVectors.add(trigramVectorInput);
+        allInputVectors.add(trigramVectorInput);
         this.wordLengthVectorInput = wordLenObjInp.analyzeText(this.inputtedTxt);
-        allVectors.add(wordLengthVectorInput);
+        allInputVectors.add(wordLengthVectorInput);
     }
     
-    public void runCosineSimilarityOnAll(){
+    public String runCosineSimilarityOnAll(){
+        //vectors closer to 1 are pointing in the same direction
+        //sum up all individual analyzer vectors --> closest to 1 is the guess
+        for(LangRecord record : recordsContainer){
+            double cosineScoreSum = 0;
+            cosineScoreSum = addWithCheck(cosineScoreSum, CosineSimilarityAnalyzer.computeCosineSimilarityOfTwoVectors(bigramVectorInput,record.getBigramVector()));
+            
+            cosineScoreSum = addWithCheck(cosineScoreSum, CosineSimilarityAnalyzer.computeCosineSimilarityOfTwoVectors(letterFreqVectorInput,record.getLetterFreqVector()));
+            
+            cosineScoreSum = addWithCheck(cosineScoreSum, CosineSimilarityAnalyzer.computeCosineSimilarityOfTwoVectors(trigramVectorInput,record.getTrigramVector()));
+            
+            cosineScoreSum = addWithCheck(cosineScoreSum, CosineSimilarityAnalyzer.computeCosineSimilarityOfTwoVectors(wordLengthVectorInput,record.getWordLengthVector()));
+            
+            record.setCosineSimScore(cosineScoreSum);
+            System.out.println(record.getLangName()+": "+ cosineScoreSum);
+        }
+        //get the record with the highest sum 
+        LangRecord recordGuess = returnLargestCosineSimScoreRecord();
+        System.out.println("The guess is " + recordGuess);
+        
+        return recordGuess.getLangName();
         
     }
     
+    public LangRecord returnLargestCosineSimScoreRecord(){
+        LangRecord currentMax = null;
+        for(LangRecord record : recordsContainer){
+            if (currentMax == null){
+                currentMax = record;
+            }
+            else{
+                if(record.getCosineSimScore()>currentMax.getCosineSimScore() && !Double.isNaN(record.getCosineSimScore())){//take the greater one to be the new currMax (make sure not a NaN value)
+                    currentMax = record;
+                }
+            }
+        }
+        
+        return currentMax;
+    }
     
     
-    
-    
+    public double addWithCheck(double runningSum, double addend){
+        //TO BE USED WITH RUNCOSINESIMILARITYONALL() TO PROTECT AGAINST NANS
+        if(!Double.isNaN(addend)){
+            runningSum += addend;
+        }
+        return runningSum;
+    }
     
     
     
@@ -107,5 +152,8 @@ public class Model {
     
     public String getThePrediction(){
         return guessedLang;
+    }
+    public String getGeminiResponse(){
+        return geminiResponse;
     }
 }

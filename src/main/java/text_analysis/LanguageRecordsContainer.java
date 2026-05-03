@@ -29,10 +29,10 @@ public class LanguageRecordsContainer {
     
     private LanguageRecordsContainer(){
         //maintain order of creation -- all objects are singletons
-        engRecord = EnglishLangRecord.getInstance("eng", textFiles[0], textFiles[1]);
-        spaRecord = SpanishLangRecord.getInstance("spa", textFiles[2], textFiles[3]);
-        freRecord = FrenchLangRecord.getInstance("fre", textFiles[4], textFiles[5]);
-        deuRecord = GermanLangRecord.getInstance("deu", textFiles[6], textFiles[7]);
+        engRecord = EnglishLangRecord.getInstance("eng", textFiles[0], textFiles[1], "English");
+        spaRecord = SpanishLangRecord.getInstance("spa", textFiles[2], textFiles[3], "Spanish");
+        freRecord = FrenchLangRecord.getInstance("fre", textFiles[4], textFiles[5], "French");
+        deuRecord = GermanLangRecord.getInstance("deu", textFiles[6], textFiles[7], "German");
         //add all the records to the list
         allRecords = new ArrayList<>();
         allRecords.add(engRecord);

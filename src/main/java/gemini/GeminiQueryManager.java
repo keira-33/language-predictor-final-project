@@ -5,6 +5,8 @@ import com.google.genai.Client;
 import com.google.genai.errors.ServerException;
 import com.google.genai.types.GenerateContentResponse;
 import java.util.prefs.Preferences;
+import com.google.genai.types.Content;
+import com.google.genai.types.Part;
 import javax.swing.JOptionPane;
 
 public class GeminiQueryManager {
@@ -40,7 +42,7 @@ public class GeminiQueryManager {
                 null);
 
             System.out.println(response.text());
-            return response.text(); // TO DO: fix this return statement later 
+            return response.text(); 
         }catch(ServerException ex){
             // it failed...
             JOptionPane.showMessageDialog(null,
@@ -49,6 +51,34 @@ public class GeminiQueryManager {
                     JOptionPane.ERROR_MESSAGE);
             return "Request Failed";
         }
-  }
+    }
+    
+    public String promptGeminiWithImage(byte[] imgAsBytes){
+       //followed these tutorials to get multimodal content as inputs to gemini api:
+       //https://medium.com/@kandaanusha/google-gen-ai-integration-java-af984aac126c
+       //https://ai.google.dev/gemini-api/docs/file-input-methods#python_6
+       try{
+           //first construct multimodal content
+           Content content = Content.fromParts(
+                Part.fromText("The given image should have text on it. Give the text found in the image. If no text found, your response should be '-'."),
+                Part.fromBytes(imgAsBytes, "image/png"));
+           
+               GenerateContentResponse response =
+                    client.models.generateContent(
+                        "gemini-3-flash-preview",
+                        content, // input
+                        null);
+               System.out.println(response.text());
+               return response.text();
+           
+        }catch(ServerException ex){
+            // it failed...
+            JOptionPane.showMessageDialog(null,
+                    "Gemini API is Unavailable at this time",
+                    "API Request w/ Image Input Failed",
+                    JOptionPane.ERROR_MESSAGE);
+            return "Request Failed";
+        }
+    }
        
 }

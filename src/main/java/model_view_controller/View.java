@@ -1,6 +1,12 @@
 package model_view_controller;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,7 +16,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     private Model model;
     private Controller controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(View.class.getName());
-
+    boolean isImgOn;
     /**
      * Creates new form View1
      */
@@ -19,6 +25,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         this.controller = c;
         this.model.attach(this);
         initComponents();
+        isImgOn = false;
     }
     
     /**
@@ -42,6 +49,8 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
         jScrollPane1 = new javax.swing.JScrollPane();
         aiResponseJTextArea = new javax.swing.JTextArea();
         geminiPredLbl = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        uploadImgBtn = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -84,7 +93,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
             userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userTextJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -93,16 +102,15 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
             userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userTextJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(userTextJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userTextJPanelLayout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
-                        .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(userTextJScrollPane))
+                .addComponent(userTextJScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(userTextJPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(cursorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 120));
+        getContentPane().add(userTextJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 670, 120));
 
         computerResultJPanel.setBackground(new java.awt.Color(255, 255, 255));
         computerResultJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 221, 253), 5));
@@ -162,6 +170,37 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
 
         getContentPane().add(aiResultJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 750, 170));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 221, 253), 5));
+
+        uploadImgBtn.setForeground(new java.awt.Color(255, 255, 255));
+        uploadImgBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/upload-arrow.png"))); // NOI18N
+        uploadImgBtn.setBorder(null);
+        uploadImgBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadImgBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(uploadImgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(uploadImgBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, 70, 120));
+
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_images/bg-img2.png"))); // NOI18N
         backgroundLabel.setText("");
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 610));
@@ -176,11 +215,45 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
             model.changeTheData(userTextJTextArea.getText());  
         }
     }//GEN-LAST:event_cursorBtnActionPerformed
+
+    private void uploadImgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImgBtnActionPerformed
+        // TODO add your handling code here:
+        if(model!=null){
+            model.changeTheDataImgUpload(readInIMGFile());  
+        }
+    }//GEN-LAST:event_uploadImgBtnActionPerformed
+    
+    public byte[] readInIMGFile(){
+        //code borrowed then modified from TraderWindow csc260 codeshare
+        //Create a file chooser
+        isImgOn = true;
+        byte[] imageAsBytes;
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            try{
+                FileReader fr = new FileReader(fc.getSelectedFile());
+                String absolutePath = fc.getSelectedFile().getAbsolutePath();
+                //read in the local image into an array of bytes
+                imageAsBytes = Files.readAllBytes(Paths.get(absolutePath));
+                return imageAsBytes;
+            }catch(IOException ex){
+                JOptionPane.showMessageDialog(this, "Could not write to file", "File Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return new byte[1];
+    }
+    
     
     @Override
     public void handleModelChangeEvent() {
         resultLanguageLbl.setText("Program Prediction: "+model.getThePrediction());
         displayAIResponseTxt();
+        if(isImgOn){
+            userTextJTextArea.setText("The image displayed: \n'"+ model.getInputtedText()+"'");
+            isImgOn= false; // set it back to false after 
+        }
+        
     }
     
     public void displayAIResponseTxt(){
@@ -227,8 +300,10 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     private javax.swing.JLabel displayTxtLbl;
     private javax.swing.JLabel geminiPredLbl;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel resultLanguageLbl;
+    private javax.swing.JButton uploadImgBtn;
     private javax.swing.JPanel userTextJPanel;
     private javax.swing.JScrollPane userTextJScrollPane;
     private javax.swing.JTextArea userTextJTextArea;

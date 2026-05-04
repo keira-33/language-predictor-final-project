@@ -3,7 +3,6 @@ package model_view_controller;
 
 import java.util.ArrayList;
 import text_analysis.LanguageRecordsContainer;
-import text_analysis.language_records.EnglishLangRecord;
 import gemini.GeminiQueryManager;
 import text_analysis.BigramAnalyzer;
 import text_analysis.ComprehensiveAnalyzer;
@@ -48,6 +47,20 @@ public class Model {
                + "Only respond in this format (separate all points with a pipe|): predicted language | reason one | reason 2");
        notifyObservers();
     }
+    
+    public void changeTheDataImgUpload(byte[] imgArray){
+        inputtedTxt = GeminiQueryManager.get().promptGeminiWithImage(imgArray);
+        System.out.println(inputtedTxt);
+        runAnalyzersOnInputtedTextAndSetVectors();
+        runCosineSimilarityOnAll();
+        //MUST DETERMINE GUESSED LANG before calling notify
+        guessedLang = runCosineSimilarityOnAll();
+        //testing gemini stuff: //
+        geminiResponse = GeminiQueryManager.get().promptGemini("Given this text:"+ inputtedTxt +"; What language do you think that text is written in and give two bullet points why you think this. "
+                + "Only respond in this format (separate all points with a pipe|): predicted language | reason one | reason 2");
+        notifyObservers();
+    }
+    
     
     public void runAnalyzersOnInputtedTextAndSetVectors(){
         allInputVectors.clear();//wipe old vectors for new input
@@ -122,7 +135,7 @@ public class Model {
             observer.handleModelChangeEvent();
         }
     }
-
+   
     public void attach(ModelChangedEventHandler  o){
         observers.add(o);
     }
@@ -133,5 +146,8 @@ public class Model {
     }
     public String getGeminiResponse(){
         return geminiResponse;
+    }
+    public String getInputtedText(){
+        return inputtedTxt;
     }
 }

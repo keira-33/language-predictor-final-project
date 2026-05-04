@@ -4,6 +4,7 @@ package model_view_controller;
 import java.util.ArrayList;
 import text_analysis.LanguageRecordsContainer;
 import gemini.GeminiQueryManager;
+import javax.swing.JOptionPane;
 import text_analysis.BigramAnalyzer;
 import text_analysis.ComprehensiveAnalyzer;
 import text_analysis.CosineSimilarityAnalyzer;

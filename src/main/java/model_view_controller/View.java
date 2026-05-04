@@ -247,13 +247,21 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     
     @Override
     public void handleModelChangeEvent() {
-        resultLanguageLbl.setText("Program Prediction: "+model.getThePrediction());
-        displayAIResponseTxt();
         if(isImgOn){
-            userTextJTextArea.setText("The image displayed: \n'"+ model.getInputtedText()+"'");
-            isImgOn= false; // set it back to false after 
+            if(model.getInputtedText().equals("-")){
+               JOptionPane.showMessageDialog(this, "Image Could Not Be Read", "Image Read Error", JOptionPane.ERROR_MESSAGE);
+          
+            }else{
+               userTextJTextArea.setText("The image displayed: \n'"+ model.getInputtedText()+"'");
+               isImgOn= false; // set it back to false after 
+               resultLanguageLbl.setText("Program Prediction: "+model.getThePrediction());
+               displayAIResponseTxt();
+            }
         }
-        
+        if(!isImgOn){
+            resultLanguageLbl.setText("Program Prediction: "+model.getThePrediction());
+            displayAIResponseTxt();
+        }  
     }
     
     public void displayAIResponseTxt(){

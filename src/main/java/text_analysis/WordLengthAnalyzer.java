@@ -28,8 +28,12 @@ public class WordLengthAnalyzer extends TextAnalyzer {
                 hash.put(word.length(),hash.get(word.length())+1);
             }
         }
+        
         //turn the hash table into a vector using the formula --> return it
         double[] distVector = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+        if(wordCount == 0){ //protection against really short texts --> prevent the division by 0 later on
+           return distVector;
+        }
         for(int i=0; i<distVector.length; i++){ // i is n - 1
             double result = (double) hash.get(i+1);
             result = result/wordCount;
@@ -37,7 +41,7 @@ public class WordLengthAnalyzer extends TextAnalyzer {
         }
         
         //TESTING - DELETE LATER
-        System.out.println(distVector);
+        //System.out.println(distVector);
         
        return distVector;
         

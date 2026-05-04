@@ -21,10 +21,10 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
      * Creates new form View1
      */
     public View(Model m, Controller c){
+        initComponents();
         this.model = m; 
         this.controller = c;
         this.model.attach(this);
-        initComponents();
         isImgOn = false;
     }
     
@@ -210,7 +210,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
 
     private void cursorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursorBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println(userTextJTextArea.getText());
+        //System.out.println(userTextJTextArea.getText());
         if(model!=null){
             model.changeTheData(userTextJTextArea.getText());  
         }
@@ -224,6 +224,7 @@ public class View extends javax.swing.JFrame implements ModelChangedEventHandler
     }//GEN-LAST:event_uploadImgBtnActionPerformed
     
     public byte[] readInIMGFile(){
+        //READS IN AN IMG FILE FROM A JFILECHOOSER
         //code borrowed then modified from TraderWindow csc260 codeshare
         //Create a file chooser
         isImgOn = true;

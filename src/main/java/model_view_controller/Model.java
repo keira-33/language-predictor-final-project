@@ -51,7 +51,7 @@ public class Model {
     
     public void changeTheDataImgUpload(byte[] imgArray){
         inputtedTxt = GeminiQueryManager.get().promptGeminiWithImage(imgArray);
-        System.out.println(inputtedTxt);
+        //System.out.println(inputtedTxt);
         runAnalyzersOnInputtedTextAndSetVectors();
         runCosineSimilarityOnAll();
         //MUST DETERMINE GUESSED LANG before calling notify
@@ -95,11 +95,11 @@ public class Model {
             cosineScoreSum = addWithCheck(cosineScoreSum, CosineSimilarityAnalyzer.computeCosineSimilarityOfTwoVectors(wordLengthVectorInput,record.getWordLengthVector()));
             
             record.setCosineSimScore(cosineScoreSum);
-            System.out.println(record.getLangName()+": "+ cosineScoreSum);
+            //System.out.println(record.getLangName()+": "+ cosineScoreSum);
         }
         //get the record with the highest sum 
         LangRecord recordGuess = returnLargestCosineSimScoreRecord();
-        System.out.println("The guess is " + recordGuess);
+        //System.out.println("The guess is " + recordGuess);
         
         return recordGuess.getLangName();
         

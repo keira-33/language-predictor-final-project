@@ -30,7 +30,7 @@ public class CosineSimilarityAnalyzer {
             return 0.0; 
         }
         double cosineSimScore = (computeDotProductOfTwoVectors(vectorA, vectorB))/magnitudesProduct;
-        System.out.println(cosineSimScore);
+        //System.out.println(cosineSimScore);
         return cosineSimScore;
     }
     

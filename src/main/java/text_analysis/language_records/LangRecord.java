@@ -50,8 +50,8 @@ public class LangRecord {
         
         
         //TESTING -- REMOVE FOR FINAL:
-        System.out.println(langCode + "I did it!");
-        System.out.println(textCollection.substring(0, 20));
+        //System.out.println(langCode + "I did it!");
+        //System.out.println(textCollection.substring(0, 20));
         // TESTING TESTING TESTING 
     }
     

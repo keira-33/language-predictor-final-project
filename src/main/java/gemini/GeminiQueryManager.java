@@ -41,7 +41,7 @@ public class GeminiQueryManager {
                 promptTxt, // " Ask me a question?"  
                 null);
 
-            System.out.println(response.text());
+            //System.out.println(response.text());
             return response.text(); 
         }catch(ServerException ex){
             // it failed...
@@ -68,7 +68,7 @@ public class GeminiQueryManager {
                         "gemini-3-flash-preview",
                         content, // input
                         null);
-               System.out.println(response.text());
+               //System.out.println(response.text());
                return response.text();
            
         }catch(ServerException ex){

@@ -11,7 +11,6 @@ public class BigramAnalyzer extends TextAnalyzer {
     public double[] analyzeText(String textCollection){
         //COUNTS ALL THE TWO CHAR LETTER PAIRS IN TEXT COLLECTION'S WORDS
         // ENDING VECTOR TELLS YOU PERCENTAGE OF OCCURENCES OF EACH BIGRAM
-        
         //FORMULA: VECTOR[X] = (COUNT OF SPECIFIC BIGRAM OCCURRENCES) / (TOTAL COUNT OF BIGRAMS IN TEXT)
         //get letterset and initialize a total bigram count int var
         char[] letterSet = LanguageRecordsContainer.getLetterDataset();

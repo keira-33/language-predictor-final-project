@@ -33,9 +33,11 @@ public class Model {
         //initialize all the languages + initial analysis
         recordsContainer = new ArrayList<>();
         recordsContainer = LanguageRecordsContainer.getInstance().getAllRecords();
+        //took this away and moved into thread to load faster: 
         //run all the analysis --> model only gets instantiated x1 so analyzers only get run x1 for base languages 
-        ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords(); 
+        //ComprehensiveAnalyzer.getInstance().runAllAnalyzersOnLangRecords(); 
     }
+
     
     public void changeTheData(String newText){
        inputtedTxt = newText;

@@ -30,6 +30,20 @@ public class ComprehensiveAnalyzer {
         runWordLengthAnalyzerOnAll();
     }
     
+    //THREADING -- did not improve time 
+//    public void runAllAnalyzersOnLangRecords(){
+//        Thread thread1 = new Thread(()->{
+//            runBigramAnalyzerOnAll();
+//            runTrigramAnalyzerOnAll();
+//        });
+//        Thread thread2 = new Thread(()->{
+//            runLetterFreqAnalyzerOnAll();
+//            runWordLengthAnalyzerOnAll();
+//        });
+//        thread1.start();
+//        thread2.start();
+//    }
+    
     //INDIVIDUAL RUN METHODS 
     public void runBigramAnalyzerOnAll(){
         //go over each record and run the analyzer on the record and set using langRecord setter function

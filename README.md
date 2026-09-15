@@ -6,6 +6,6 @@ or by being fed through the Gemini API.
 -Corpora collected from digital public domain libraries like Project Gutenberg to support analysis of 7 languages including: English, French, Spanish, Tagalog, German, Polish, and Portuguese.
 - Cosine similarity scoring used to compare bigram, trigram, word length, and letter frequency analysis. 
 
-Code language: Java (OOP)
-IDE: Netbeans
-Key Design Patterns: Singleton, Model-View-Controller, abstract classes, interfaces, and subclassing.
+-Code language: Java (OOP)
+-IDE: Netbeans
+-Key Design Patterns: Singleton, Model-View-Controller, abstract classes, interfaces, and subclassing.

@@ -8,3 +8,5 @@
 - Code language: Java (OOP)
 - IDE: Netbeans
 - Key Design Patterns: Singleton, Model-View-Controller, abstract classes, interfaces, and subclassing.
+
+** See language_predictor_project_26.pdf in the files for an example of how the project works. **
